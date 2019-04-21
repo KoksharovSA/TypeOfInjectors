@@ -90,14 +90,14 @@ namespace TypeOfInjectors
         }
     }
 
-    public class Allowances
+    public static class Allowances
     {
-        private double allowanceButt; //Припуск на торец
-        private double allowanceBearingButt; //Припуск на опорный торец
-        private double allowanceDiameterCup; //Припуск на диаметр стаканчика
-        private double allowanceSphere; //Припуск на сферу
-        private double allowanceAngle59; //Припуск на угол 59
-        private double allowanceDiameter4; //Припуск на диаметр 4
+        public static double allowanceButt; //Припуск на торец
+        public static double allowanceBearingButt; //Припуск на опорный торец
+        public static double allowanceDiameterCup; //Припуск на диаметр стаканчика
+        public static double allowanceSphere; //Припуск на сферу
+        public static double allowanceAngle59; //Припуск на угол 59
+        public static double allowanceDiameter4; //Припуск на диаметр 4
 
     }
 
@@ -260,11 +260,27 @@ namespace TypeOfInjectors
 
     public class Injector9notMandrel : IInjector
     {
-        public Injector9notMandrel(InjectorSize injector, Detail det, Allowances allowan)
+        InjectorSize injectorSize;
+        Detail detail;
+        public Injector9notMandrel(InjectorSize injector, Detail det)
         {
-            InjectorSize injectorSize = injector;
-            Detail detail = det;
-            Allowances allowances = allowan;
+            injectorSize = injector;
+            detail = det;
+        }
+
+
+        public double[] TurningRIKA(params double[] sizes)
+        {
+            double angleLeftChamferCup = sizes[0];
+            double lengthAngleLeftChamferCup = sizes[1];
+            double angleRightChamferCup = sizes[2];
+            double lengthAngleRightChamferCup = sizes[3];
+            double lengthCup = sizes[4];
+            double diameterNose = sizes[5];
+            double lengthFromButtBeforeNose = injectorSize.LengthOverall + Allowances.allowanceButt + Allowances.allowanceSphere;
+            double lengthFromBearingButtBeforeNose = lengthFromButtBeforeNose - lengthCup;
+
+            return null;
         }
 
         public double[] AggregateDrillingMicron(params double[] sizes)
@@ -362,9 +378,5 @@ namespace TypeOfInjectors
             throw new NotImplementedException();
         }
 
-        public double[] TurningRIKA(params double[] sizes)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
