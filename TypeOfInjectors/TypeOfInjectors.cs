@@ -940,7 +940,7 @@ namespace TypeOfInjectors
 
             result[0] = injectorSize.DiameterFuelSupply;
             result[1] = injectorSize.LengthFuelSupply + Allowances.allowanceButtRika - sizes[0];
-            result[2] = 
+            result[2] = 1;
 
             return result;
             throw new NotImplementedException();
